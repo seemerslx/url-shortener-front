@@ -1,9 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { urlDTO } from "../../models/url.model";
-import data from "../../utils/data";
-import { urlShortUrl } from "../../utils/enpoints";
+import { urlShortUrl } from "../../utils/endpoints";
 import roles from "../../utils/roles";
 import { trimUrl } from "../../utils/trimUrl";
 import Authorized from "../Auth/Authorized";

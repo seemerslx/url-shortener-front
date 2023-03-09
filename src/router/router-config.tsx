@@ -8,7 +8,8 @@ import UrlsLayout from "../components/UI/UrlsLayout";
 import CreateUrl from "../components/Urls/CreateUrl";
 import UrlDetails from "../components/Urls/UrlDetails";
 import Urls from "../components/Urls/Urls";
-import Login from "../components/Auth/Login";
+import Register from "../components/Auth/Register/Register";
+import Login from "../components/Auth/Login/Login";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
             </Route>
             <Route path="about" element={<About />}></Route>
             <Route path="login" element={<Login />}></Route>
+            <Route path="register" element={<Register/>}></Route>
         </Route >
     ));
 

@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { urlDTO } from "../../models/url.model";
-import { urlShortUrl } from "../../utils/enpoints";
+import { urlShortUrl } from "../../utils/endpoints";
 import DisplayErrors from "../Helpers/DisplayErrors";
 import UrlsForm from "./UrlsForm";
 

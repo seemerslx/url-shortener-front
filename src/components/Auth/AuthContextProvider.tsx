@@ -1,12 +1,14 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { claim } from "./auth.models";
 import AuthenticationContext from "./AuthenticationContext";
+import { getClaims } from "./handlejwt";
 
 const AuthContextProvider = (props: authContextProviderProps) => {
-    const [claims, setClaims] = useState<claim[]>([
-        {name: "email", value: 'jlw230604@gmail.com'},
-        {name: "role", value: 'user'},
-    ]);
+    const [claims, setClaims] = useState<claim[]>([]);
+
+    useEffect(() => {
+        setClaims(getClaims());
+    }, []);
 
     return <AuthenticationContext.Provider
         value={{ claims: claims, update: setClaims }}>{props.children}</AuthenticationContext.Provider>

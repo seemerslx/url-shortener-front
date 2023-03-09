@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { urlDTO } from "../../models/url.model";
-import { urlShortUrl } from "../../utils/enpoints";
+import { urlShortUrl } from "../../utils/endpoints";
 import Loading from "../UI/Loading";
 import "./UrlDetails.css";
 
