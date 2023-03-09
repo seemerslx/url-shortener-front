@@ -4,6 +4,16 @@
     align-items: center;
     padding: 10px 0px;
   }
+  
+  .header-nav-list-item{
+    cursor: pointer;
+  }
+
+  .logo{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+  }
 
   .nav-link .active{
     text-decoration: underline;

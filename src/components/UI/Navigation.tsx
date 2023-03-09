@@ -17,10 +17,11 @@ const Navigation = () => {
         <nav className="header-nav">
             <ul style={{ margin: "0px" }} className="header-nav-list">
                 <li className="header-nav-list-item">
-                    <NavLink to={"/"} className="logo">Shortener</NavLink>
+                    <NavLink to={"/"} className="logo">Shortener-App</NavLink>
                 </li>
                 <li className="header-nav-list-item"><NavLink className="nav-link" to={"/"}>Home</NavLink></li>
                 <li className="header-nav-list-item"><NavLink className="nav-link" to={"/urls"}>Urls</NavLink></li>
+                <li className="header-nav-list-item"><NavLink className="nav-link" to={"/about"}>About</NavLink></li>
             </ul>
             <div className="d-flex gap-3">
                 <Authorized

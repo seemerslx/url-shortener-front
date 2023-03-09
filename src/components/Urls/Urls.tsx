@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import { urlDTO } from "../../models/url.model";
 import { urlShortUrl } from "../../utils/endpoints";
 import roles from "../../utils/roles";
@@ -44,17 +45,19 @@ const Urls = () => {
             console.log("URL TO DELETE", `${urlShortUrl}/${id}`);
             const res = await axios.delete(`${urlShortUrl}/${id}`);
             console.log(res);
+            swal(`URL successfully deleted`, ``, "success")
             loadData();
-        } catch (error) {
+        } catch (error: any) {
             const err = error as AxiosError;
             if (err) {
-                console.log(err);
+                swal(`${error.response.data}`, ``, "error")
+                console.log(error.response.data);
             }
         }
     };
 
     return <>
-        <div className="container">
+        <div className="container m-3">
             <Authorized roles={[roles.user, roles.admin]} authorized={<Link className="btn btn-primary" to={"create"}>Short url</Link>}></Authorized>
 
             <RecordsPerPageSelect onChange={(amountOfRecords) => {
@@ -78,7 +81,7 @@ const Urls = () => {
                         {urls.map(url => {
                             return <tr key={url.id}>
                                 <td>{url.shortUrl}</td>
-                                <td>{trimUrl(url.url)}</td>
+                                <td>{url.url}</td>
                                 <td>
                                     <div className="urls-buttons">
                                         <Authorized authorized={<Link className="btn btn-primary" to={`${url.id}`}>Details</Link>}></Authorized>

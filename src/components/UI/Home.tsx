@@ -3,12 +3,9 @@ import Authorized from "../Auth/Authorized";
 
 const Home = () => {
     return <>
-        <Authorized 
-        authorized={<p>You are authorized</p>} 
-        notAuthorized={<p>You are not authorized</p>} roles={[roles.user, roles.admin]}></Authorized>
-
-        <h1>Hello this home page of my url shortener application</h1>
-        
+        <div className="m-3 text-center">
+            <h2>Hello this home page of my url shortener application</h2>
+        </div>
     </>
 };
 

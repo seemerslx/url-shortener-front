@@ -1,6 +1,26 @@
 import { ReactElement, useContext, useEffect, useState } from "react";
+import { claim } from "./auth.models";
 import AuthenticationContext from "./AuthenticationContext";
 
+const hasRoleClaim = (claims: claim[], roles: string[]) => {
+    const hasRole = claims.some(claim => {
+        if (claim.name === 'role' && Array.isArray(claim.value)) {
+            return claim.value.some(role => roles.includes(role));
+        }
+        else if (claim.name === 'role' && roles.includes(claim.value)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    });
+
+    if (hasRole) {
+        return true;
+    }
+    return false;
+}
 const Authorized = (props: authorizedProps) => {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const { claims } = useContext(AuthenticationContext);
@@ -10,9 +30,11 @@ const Authorized = (props: authorizedProps) => {
         if (props.roles) {
             console.log("IN ROLE CHECKING");
 
-            const index = claims
-                .findIndex(claim => claim.name === 'role' && props.roles?.includes(claim.value));
-            setIsAuthorized(index > -1);
+
+            const res = hasRoleClaim(claims, props.roles);
+
+            console.log("CHECKING AUTH - roles", res);
+            setIsAuthorized(res);
         }
         else {
             console.log("IN CLAIMS CHECKING");

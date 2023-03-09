@@ -15,6 +15,7 @@ const Login = () => {
 
     async function login(credentials: loginCredentionals) {
         try {
+            console.log("Making response!!!");
             const response = await axios
                 .post<authenticationResponse>(`${urlAccounts}/login`, credentials);
                 saveToken(response.data);

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { authenticationResponse, claim } from "./auth.models";
 
 const tokenKey = "token";
@@ -38,3 +39,7 @@ export function logout(){
     localStorage.removeItem(tokenKey);
     localStorage.removeItem(expirationKey);
 };
+
+export function getToken(){
+    return localStorage.getItem(tokenKey);
+}

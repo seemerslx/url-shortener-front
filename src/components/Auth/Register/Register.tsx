@@ -10,7 +10,7 @@ import RegisterForm from "./RegisterForm";
 
 const Register = () => {
     const [errors, setErrors] = useState<string[]>([]);
-    const {update} = useContext(AuthenticationContext);
+    const { update } = useContext(AuthenticationContext);
     const navigate = useNavigate();
 
     async function register(credentials: registerCredentionals) {
@@ -18,13 +18,15 @@ const Register = () => {
             console.log("IN SEDNING REQUEST");
             const response = await axios
                 .post<authenticationResponse>(`${urlAccounts}/register`, credentials);
-                saveToken(response.data);
-                update(getClaims())
-                console.log(response.data);
+            saveToken(response.data);
+            update(getClaims())
+            console.log(response.data);
             navigate("/login");
         } catch (error: any) {
-            console.log(error.response.data);
-            setErrors(error.response.data);
+            if (error.response.data) {
+                console.log(error.response.data);
+                setErrors(error.response.data);
+            }
         }
     }
 

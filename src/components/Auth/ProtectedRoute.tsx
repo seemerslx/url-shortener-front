@@ -16,11 +16,16 @@ const ProtectedRoutes = (props: protectedRouteProps) => {
         return context.claims.findIndex(x => x.name === "role" && x.value === "user") > -1;
     }
 
+    const isAnyUser = () => {
+        return context.claims.findIndex(x => x.name === "role") > -1;
+    }
+
     const isAdminRes = isAdmin();
     const isUserRes = isUser();
+    const isAnyUserRes = isAnyUser()
 
     if (props.isAnyAuthUser) {
-        if (isUserRes) {
+        if (isAnyUserRes) {
             return <Outlet />;
         }
         else {
@@ -31,7 +36,7 @@ const ProtectedRoutes = (props: protectedRouteProps) => {
         if (isAdminRes) {
             return <Outlet />
         }
-        else if (!isAdminRes && isUserRes) {
+        else if (!isAdminRes && isAnyUserRes) {
             return <NotAllowedPage />
         }
         else {

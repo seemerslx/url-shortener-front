@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
 import AuthContextProvider from './components/Auth/AuthContextProvider';
+import { configureInterceptor } from './components/Helpers/httpInterceptors';
 import MyRouter from './router/router-config';
+
+configureInterceptor();
 
 function App() {
   return (
