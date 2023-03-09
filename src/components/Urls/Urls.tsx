@@ -5,7 +5,6 @@ import swal from "sweetalert";
 import { urlDTO } from "../../models/url.model";
 import { urlShortUrl } from "../../utils/endpoints";
 import roles from "../../utils/roles";
-import { trimUrl } from "../../utils/trimUrl";
 import Authorized from "../Auth/Authorized";
 import Pagination from "../Helpers/Pagination";
 import RecordsPerPageSelect from "../Helpers/RecordsPerPageSelect";
@@ -42,7 +41,6 @@ const Urls = () => {
 
     const deleteUrl = async (id: string) => {
         try {
-            console.log("URL TO DELETE", `${urlShortUrl}/${id}`);
             const res = await axios.delete(`${urlShortUrl}/${id}`);
             console.log(res);
             swal(`URL successfully deleted`, ``, "success")

@@ -15,26 +15,27 @@ const Register = () => {
 
     async function register(credentials: registerCredentionals) {
         try {
-            console.log("IN SEDNING REQUEST");
             const response = await axios
                 .post<authenticationResponse>(`${urlAccounts}/register`, credentials);
+
             saveToken(response.data);
             update(getClaims())
-            console.log(response.data);
-            navigate("/login");
+
+            navigate("/");
         } catch (error: any) {
             if (error.response.data) {
-                console.log(error.response.data);
                 setErrors(error.response.data);
             }
         }
     }
 
     return <>
-        <h3>Register</h3>
-        <DisplayErrors errors={errors} />
-        <RegisterForm model={{ email: "", username: "", password: "" }}
-            onSubmit={async (values) => { await register(values) }} />
+        <div className="m-3">
+            <h3>Register</h3>
+            <DisplayErrors errors={errors} />
+            <RegisterForm model={{ email: "", username: "", password: "" }}
+                onSubmit={async (values) => { await register(values) }} />
+        </div>
     </>
 
 };

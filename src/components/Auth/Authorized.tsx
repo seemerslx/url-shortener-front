@@ -25,21 +25,13 @@ const Authorized = (props: authorizedProps) => {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const { claims } = useContext(AuthenticationContext);
 
-
     useEffect(() => {
         if (props.roles) {
-            console.log("IN ROLE CHECKING");
-
-
             const res = hasRoleClaim(claims, props.roles);
 
-            console.log("CHECKING AUTH - roles", res);
             setIsAuthorized(res);
         }
         else {
-            console.log("IN CLAIMS CHECKING");
-            console.log(claims);
-            console.log(claims.length > 0);
             setIsAuthorized(claims.length > 0);
         }
     }, [claims, props.roles]);

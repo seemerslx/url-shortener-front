@@ -9,29 +9,32 @@ import { getClaims, saveToken } from "../handlejwt";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
-    const {update} = useContext(AuthenticationContext);
+    const { update } = useContext(AuthenticationContext);
     const navigate = useNavigate();
     const [errors, setErrors] = useState<string[]>([]);
 
     async function login(credentials: loginCredentionals) {
         try {
-            console.log("Making response!!!");
             const response = await axios
                 .post<authenticationResponse>(`${urlAccounts}/login`, credentials);
-                saveToken(response.data);
-                update(getClaims());
-            console.log(response.data);
+            saveToken(response.data);
+            update(getClaims());
             navigate("/");
         } catch (error: any) {
-            setErrors(error.response.data);
+            if (error.response.data) {
+                setErrors(error.response.data);
+            }
         }
     }
 
     return <>
-        <h3>Login</h3>
-        <DisplayErrors errors={errors} />
-        <LoginForm model={{ email: "", password: "" }}
-            onSubmit={async (values) => { await login(values) }} />
+        <div className="m-3">
+            <h3>Login</h3>
+            <DisplayErrors errors={errors} />
+            <LoginForm model={{ email: "", password: "" }}
+                onSubmit={async (values) => { await login(values) }} />
+        </div>
+
     </>
 };
 

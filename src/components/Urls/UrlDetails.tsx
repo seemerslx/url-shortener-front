@@ -11,7 +11,6 @@ const UrlDetails = () => {
     const { id } = useParams();
     const [url, setUrl] = useState<urlDetailsDTO>();
     useEffect(() => {
-        console.log("MAKING AN RESPOSNE");
         axios.get(`${urlShortUrl}/${id}`)
             .then((response: AxiosResponse<urlDetailsDTO>) => {
                 console.log(response.data);

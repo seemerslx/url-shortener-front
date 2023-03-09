@@ -16,8 +16,6 @@ const CreateUrl = () => {
             navigate("/urls");
         } catch (error) {
             const err = error as AxiosError<string[]>;
-            console.log("IN ERROR CATCH");
-            console.log(err);
             if (err && err.response) {
                 setErrors(err.response?.data);
             }

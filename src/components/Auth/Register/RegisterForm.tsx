@@ -22,9 +22,10 @@ const RegisterForm = (props: registerFormProps) => {
                     <TextField displayField="Email" field="email" />
                     <TextField displayField="Username" field="username" />
                     <TextField displayField="Password" field="password" type="password" />
-
-                    <Button disabled={formikProps.isSubmitting} type="submit">Send</Button>
-                    <Link className="btn btn-secondary" to={"/"}>Cancel</Link>
+                    <div className="d-flex gap-2 mt-2">
+                        <Button disabled={formikProps.isSubmitting} type="submit">Send</Button>
+                        <Link className="btn btn-secondary" to={"/"}>Cancel</Link>
+                    </div>
                 </Form>
             )}
         </Formik>

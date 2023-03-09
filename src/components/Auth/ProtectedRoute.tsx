@@ -7,21 +7,15 @@ import AuthenticationContext from "./AuthenticationContext";
 const ProtectedRoutes = (props: protectedRouteProps) => {
     const context = useContext(AuthenticationContext);
 
-    // here i can add useCallback
     const isAdmin = () => {
         return context.claims.findIndex(x => x.name === "role" && x.value === "admin") > -1;
     };
-
-    const isUser = () => {
-        return context.claims.findIndex(x => x.name === "role" && x.value === "user") > -1;
-    }
 
     const isAnyUser = () => {
         return context.claims.findIndex(x => x.name === "role") > -1;
     }
 
     const isAdminRes = isAdmin();
-    const isUserRes = isUser();
     const isAnyUserRes = isAnyUser()
 
     if (props.isAnyAuthUser) {
